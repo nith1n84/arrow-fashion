@@ -1,0 +1,45 @@
+.cart-item-wrapper {
+  display: flex;
+  flex-flow: wrap;
+}
+
+.cart-wrapper {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+.confirm-box,
+.empty-box {
+  height: 250px;
+  margin-left: 25px;
+  margin-top: 10px;
+}
+.confirm-box button {
+  margin: 5px;
+  font-weight: 600;
+  width: 200px;
+}
+.checkout-cart-button:hover {
+  background-color: #fcbe40;
+  color: white;
+}
+.empty-cart-button:hover {
+  background-color: rgb(231, 55, 55);
+  color: white;
+}
+
+.subtotal-text {
+  color: white;
+  margin-bottom: 30px;
+  margin-left: 5px;
+}
+
+.cart-heading {
+  color: white;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.homepage-link {
+  color: white;
+}

@@ -1,0 +1,7 @@
+.update-button button {
+  margin: 5px;
+}
+
+.update-button button:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
