@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "../../lib/Commerce";
-import './Checkout.css'
+import "./Checkout.css";
 
 const Checkout = ({ cart }) => {
   const [checkoutToken, setCheckoutToken] = useState(null);
@@ -14,54 +14,65 @@ const Checkout = ({ cart }) => {
         console.log(token);
         setCheckoutToken(token);
       } catch (error) {
-        console.log(error);
+        console.error("Error generating token:", error);
       }
     };
     generateToken();
   }, []);
-console.log(checkoutToken);
+
   return (
     <div>
-      <form className="checkout__form" action="" >
+      <form className="checkout__form" action="">
         <h4 className="checkout__subheading">Personal Details</h4>
-        <label className="checkout__label" htmlFor="firstName">First name</label>
-        <input className="checkout__input" type="text" name="firstName" placeholder="Enter your first name" required />
-        <label className="checkout__label" htmlFor="secondName">Second Name</label>
-        <input className="checkout__input" type="text" name="secondName" placeholder="Enter your second name" required />
-        <label className="checkout__label" htmlFor="email">Email</label>
-        <input className="checkout__input" type="text" name="email" placeholder="Enter your email id" required />
+        {renderInput("firstName", "First name", "Enter your first name")}
+        {renderInput("secondName", "Second Name", "Enter your second name")}
+        {renderInput("email", "Email", "Enter your email id")}
+
         <h4 className="checkout__subheading">Shipping Details</h4>
+        {renderInput(
+          "shippingName",
+          "Full name",
+          "Enter your shipping full name"
+        )}
+        {renderInput(
+          "shippingStreet",
+          "Street address",
+          "Enter your street address"
+        )}
+        {renderInput("shippingCity", "City", "Enter your city")}
+        {renderInput(
+          "shippingPostalZipCode",
+          "Postal/Zip code",
+          "Enter your postal/zip code"
+        )}
 
-        <label className="checkout__label" htmlFor="shippingName">Full name</label>
-      <input className="checkout__input" type="text" name="shippingName" placeholder="Enter your shipping full name" required />
+        <h4 className="checkout__subheading">Payment information</h4>
+        {renderInput("cardNum", "Credit card number", "Enter your card number")}
+        {renderInput("expMonth", "Expiry month", "Card expiry month")}
+        {renderInput("expYear", "Expiry year", "Card expiry year")}
+        {renderInput("ccv", "CCV", "CCV (3 digits)")}
 
-      <label className="checkout__label" htmlFor="shippingStreet">Street address</label>
-      <input className="checkout__input" type="text" name="shippingStreet" placeholder="Enter your street address" required />
-
-      <label className="checkout__label" htmlFor="shippingCity">City</label>
-      <input className="checkout__input" type="text" name="shippingCity" placeholder="Enter your city" required />
-
-      <label className="checkout__label" htmlFor="shippingPostalZipCode">Postal/Zip code</label>
-      <input className="checkout__input" type="text" name="shippingPostalZipCode" placeholder="Enter your postal/zip code" required />
-      
-      <h4 className="checkout__subheading">Payment information</h4>
-
-      <label className="checkout__label" htmlFor="cardNum">Credit card number</label>
-      <input className="checkout__input" type="text" name="cardNum" placeholder="Enter your card number" />
-
-      <label className="checkout__label" htmlFor="expMonth">Expiry month</label>
-      <input className="checkout__input" type="text" name="expMonth" placeholder="Card expiry month" />
-
-      <label className="checkout__label" htmlFor="expYear">Expiry year</label>
-      <input className="checkout__input" type="text" name="expYear" placeholder="Card expiry year" />
-
-      <label className="checkout__label" htmlFor="ccv">CCV</label>
-      <input className="checkout__input" type="text" name="ccv" placeholder="CCV (3 digits)" />
-
-      <button className="checkout__btn-confirm">Confirm order</button>
+        <button className="checkout__btn-confirm">Confirm order</button>
       </form>
     </div>
   );
 };
 
 export default Checkout;
+
+function renderInput(name, label, placeholder) {
+  return (
+    <div key={name}>
+      <label className="checkout__label" htmlFor={name}>
+        {label}
+      </label>
+      <input
+        className="checkout__input"
+        type="text"
+        name={name}
+        placeholder={placeholder}
+        required
+      />
+    </div>
+  );
+}
